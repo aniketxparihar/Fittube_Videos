@@ -2,21 +2,20 @@ import { Response } from "miragejs";
 import { requiresAuth } from "../utils/authUtils";
 
 /**
- * All the routes related to Watch Later Videos are present here.
+ * All the routes related to User WatchLater are present here.
  * These are private routes.
  * Client needs to add "authorization" header with JWT token in it to access it.
  * */
 
 /**
- * This handler handles getting videos from user's watchlater playlist.
- * send GET Request at /api/user/watchlater
+ * This handler handles getting videos from user's watchLater.
+ * send GET Request at /api/user/watchLater
  * */
-
 export const getWatchLaterVideosHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   try {
     if (!user) {
-      return new Response(
+      new Response(
         404,
         {},
         {
@@ -24,7 +23,7 @@ export const getWatchLaterVideosHandler = function (schema, request) {
         }
       );
     }
-    return new Response(200, {}, { watchlater: user.watchlater });
+    return new Response(200, {}, { watchLater: user.watchLater });
   } catch (error) {
     return new Response(
       500,
@@ -37,54 +36,106 @@ export const getWatchLaterVideosHandler = function (schema, request) {
 };
 
 /**
- * This handler handles adding videos to user's watchlater playlist.
- * send POST Request at /api/user/watchlater
+ * This handler handles adding videos to user's watchLater.
+ * send POST Request at /api/user/watchLater
  * body contains {video}
  * */
 
-export const addItemToWatchLaterVideos = function (schema, request) {
+export const addVideoToWatchLaterHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  if (user) {
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: ["The email you entered is not Registered. Not Found error"],
+        }
+      );
+    }
     const { video } = JSON.parse(request.requestBody);
-    if (user.watchlater.some((item) => item.id === video.id)) {
+    if (user.watchLater.some((item) => item.id === video.id)) {
       return new Response(
         409,
         {},
         {
-          errors: ["The video is already in your watch later videos"],
+          errors: ["The video is already in your watchLater"],
         }
       );
     }
-    user.watchlater.push(video);
-    return new Response(201, {}, { watchlater: user.watchlater });
+    user.watchLater.push(video);
+    return new Response(201, {}, { watchLater: user.watchLater });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
   }
-  return new Response(
-    404,
-    {},
-    {
-      errors: ["The email you entered is not Registered. Not Found error"],
-    }
-  );
 };
 
 /**
- * This handler handles removing videos from user's watchlater playlist.
- * send DELETE Request at /api/user/watchlater/:videoId
+ * This handler handles removing videos from user's watchLater.
+ * send DELETE Request at /api/user/watchLater/:videoId
  * */
 
-export const removeItemFromWatchLaterVideos = function (schema, request) {
+export const removeVideoFromWatchLaterHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
-  if (user) {
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: ["The email you entered is not Registered. Not Found error"],
+        }
+      );
+    }
     const videoId = request.params.videoId;
-    const filteredVideos = user.watchlater.filter(
+    const filteredWatchLater = user.watchLater.filter(
       (item) => item._id !== videoId
     );
-    this.db.users.update({ watchlater: filteredVideos });
-    return new Response(200, {}, { watchlater: filteredVideos });
+    this.db.users.update({ watchLater: filteredWatchLater });
+    return new Response(200, {}, { watchLater: filteredWatchLater });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
   }
-  return new Response(
-    404,
-    {},
-    { errors: ["The user you request does not exist. Not Found error."] }
-  );
+};
+
+/**
+ * This handler handles removing videos from user's watchLater.
+ * send DELETE Request at /api/user/watchLater/all
+ * */
+
+export const clearWatchLaterHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  try {
+    if (!user) {
+      return new Response(
+        404,
+        {},
+        {
+          errors: ["The email you entered is not Registered. Not Found error"],
+        }
+      );
+    }
+    this.db.users.update({ watchLater: [] });
+    return new Response(200, {}, { watchLater: [] });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
 };
