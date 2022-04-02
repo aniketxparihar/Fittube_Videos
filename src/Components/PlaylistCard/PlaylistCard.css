@@ -1,0 +1,19 @@
+.image__overlay {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 30rem;
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+
+}
+
+.playlist__icon {
+    color: var(--main-white);
+    position: relative;
+    top: 0px;
+    font-size: 2rem;
+}
