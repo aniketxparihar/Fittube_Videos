@@ -4,6 +4,7 @@ import "./VideoCard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../Context/Auth-Context";
+import toast, { Toaster } from "react-hot-toast";
 
 const VideoCard = (props) => {
   const [showOptions, setShowOptions] = useState("none");
@@ -105,8 +106,12 @@ const VideoCard = (props) => {
               watchLaterVideos.some((video) => video._id === props.video._id)
             ) {
               removeFromWatchLaterHandler();
+              toast.error("Removed from Watch Later!");
+              
             } else {
               watchLaterHandler();
+              toast.success("Added to Watch Later!");
+
             }
           }}
         >
