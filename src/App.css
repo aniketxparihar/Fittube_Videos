@@ -19,3 +19,13 @@
   justify-content: center;
   align-items: center;
 }
+.page__heading {
+  font-size: 2rem;
+  margin: 2rem 2rem 1rem 4rem;
+  color: var(--main-white)
+}
+
+.page__sub__heading {
+  font-size: 1.5rem;
+  margin: 1rem 2rem 2rem 4rem;
+}

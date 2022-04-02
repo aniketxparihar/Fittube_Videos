@@ -3,11 +3,10 @@ import { useUserData } from "../../Context/UserData-Context";
 import "./VideoCard.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../../Context/Auth-Context";
 
 const VideoCard = (props) => {
   const [showOptions, setShowOptions] = useState("none");
-  const { currentIdHandler, modalVisibleHandler, currentVideoHandler } =
+  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,watchLaterRender,setWatchLaterRender } =
     useUserData();
   const [watchLaterVideos, setWatchLaterVideos] = useState([]);
 
@@ -108,6 +107,7 @@ const VideoCard = (props) => {
             } else {
               watchLaterHandler();
             }
+            setWatchLaterRender(!watchLaterRender);
           }}
         >
           <i className="more__option__icon material-icons pointer">
