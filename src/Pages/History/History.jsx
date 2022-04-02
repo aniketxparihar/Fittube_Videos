@@ -19,6 +19,7 @@ const History = () => {
       setHistoryVideos(response.data.history);
     })();
   }, [historyRender]);
+  
   const clearAllHistory = async () => {
     const response = await axios.delete("/api/user/history/all", {
       headers: {

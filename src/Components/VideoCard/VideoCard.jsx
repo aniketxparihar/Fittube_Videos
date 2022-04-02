@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useUserData } from "../../Context/UserData-Context";
 import "./VideoCard.css";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../../Context/Auth-Context";
 
@@ -65,6 +66,7 @@ const VideoCard = (props) => {
       }
     );
     setHistoryRender(!historyRender);
+    toast.success("Video Deleted From History");
   }
   return (
     <div className="card__wrapper box-shadow flex flex-col m-8 bg--main-white relative">
