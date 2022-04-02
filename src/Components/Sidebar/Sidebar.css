@@ -1,0 +1,38 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+.sidebar{
+    height:100%;
+    min-width:20rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    border-right:1px solid var(--gray-800);
+    position: sticky;
+    top:10vh;
+}
+.sidebar__links{
+    width:100%;
+    padding:2rem;
+    font-size: 2rem;
+}
+.sidebar__links:hover{
+    background-color: var(--gray-800);
+}
+.material-icons{
+ position:relative;
+ top:3px;
+ margin-right:4px;
+ color:var(--primary)
+}
+
+
+
+
+
+
+
+
+
+
+
+

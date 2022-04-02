@@ -1,0 +1,87 @@
+.card__wrapper {
+    height: max-content;
+    width: 50rem;
+    background-color: var(--black);
+    border-radius: 24px;
+    border: 1px solid var(--gray-800);
+    transition: all 0.4s;
+}
+
+.card__wrapper:hover {
+    transform: scale(1.02);
+}
+
+.card__headings {
+    height: max-content;
+}
+
+.card__heading {
+    height: 4rem;
+    padding: 0rem;
+}
+
+.card__sub__heading {
+    height: 2rem;
+    padding: 0rem;
+}
+
+.card__header {
+    border: none;
+}
+
+.card__image {
+    height: 30rem;
+}
+
+.more {
+    height: fit-content;
+    margin-left: auto;
+    top: 15px;
+    color: var(--main-white);
+}
+
+.more:hover {
+    margin-left: auto;
+    top: 15px;
+    color: var(--gray-400);
+}
+
+.more__options {
+    color: var(--gray-300);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    right: 20px;
+    bottom: -10px;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: 2px solid var(--gray-800);
+    background-color: var(--gray-800);
+    border-radius: 8px;
+}
+
+.more__option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0.5rem;
+    padding: 1rem
+}
+
+.more__option:hover {
+    background-color: var(--gray-700);
+}
+
+.more__option:active {
+    background-color: var(--gray-600);
+}
+
+.more__option__icon {
+    top: 1px;
+
+}
