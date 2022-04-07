@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useUserData } from "../../Context/UserData-Context";
 import "./VideoCard.css";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../../Context/Auth-Context";
 
 const VideoCard = (props) => {
   const [showOptions, setShowOptions] = useState("none");
-  const { currentIdHandler, modalVisibleHandler, currentVideoHandler } =
+  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,historyRender,setHistoryRender } =
     useUserData();
   const [watchLaterVideos, setWatchLaterVideos] = useState([]);
 
@@ -55,6 +56,18 @@ const VideoCard = (props) => {
     );
     getWatchLaterVideos();
   };
+  const deleteHistoryHandler =async () => {
+    const response = await axios.delete(
+      `/api/user/history/${props.video._id}`,
+      {
+        headers: {
+          authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
+        },
+      }
+    );
+    setHistoryRender(!historyRender);
+    toast.success("Video Deleted From History");
+  }
   return (
     <div className="card__wrapper box-shadow flex flex-col m-8 bg--main-white relative">
       <div className="card__header flex flex-col ">
@@ -130,6 +143,16 @@ const VideoCard = (props) => {
             playlist_add
           </i>
           Add to Playlist
+        </div>
+        <div
+          className="more__option"
+          onClick={deleteHistoryHandler}
+          style={{display:props.history?"block":"none"}}
+        >
+          <i className="  material-icons pointer">
+            delete
+          </i>
+          Remove from history
         </div>
       </div>
     </div>
