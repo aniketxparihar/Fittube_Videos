@@ -4,13 +4,11 @@ import "./VideoCard.css";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { useAuth } from "../../Context/Auth-Context";
-import toast, { Toaster } from "react-hot-toast";
 
 const VideoCard = (props) => {
   const [showOptions, setShowOptions] = useState("none");
+  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,watchLaterRender,setWatchLaterRender } =
 
-  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,historyRender,setHistoryRender,playlistRender,setPlaylistRender  } =
     useUserData();
   const [watchLaterVideos, setWatchLaterVideos] = useState([]);
 
@@ -128,6 +126,7 @@ const VideoCard = (props) => {
               toast.success("Added to Watch Later!");
 
             }
+            setWatchLaterRender(!watchLaterRender);
           }}
         >
           <i className="more__option__icon material-icons pointer">

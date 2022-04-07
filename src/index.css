@@ -188,7 +188,16 @@ label {
   color: var(--main-white)
 }
 
-.page__sub__heading {
-  font-size: 1.5rem;
-  margin: 1rem 2rem 2rem 4rem;
+.card__image{
+  width:100%;
+  border-top-left-radius:24px;
+  border-top-right-radius:24px;
+}
+
+.video__card__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  flex-wrap: wrap;
+
 }

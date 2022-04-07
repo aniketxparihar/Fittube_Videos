@@ -9,7 +9,8 @@ const UserDataProvider = (props) => {
     const [currentVideo, setCurrentVideo] = useState({});
     const [sortBy, setSortBy] = useState("All");
     const [category, setCategory] = useState("");
-    const [playlistRender, setPlaylistRender] = useState(true);
+    const [watchLaterRender, setWatchLaterRender] = useState(true);
+
 
     const categoryHandler = (value) => {
         setCategory(value);
@@ -29,7 +30,7 @@ const UserDataProvider = (props) => {
 
 
     return (
-        <UserDataContext.Provider value={{ currentId, currentIdHandler, modalVisible, modalVisibleHandler, currentVideo, currentVideoHandler, sortBy, sortByHandler, category, categoryHandler,playlistRender,setPlaylistRender }}>
+        <UserDataContext.Provider value={{ currentId, currentIdHandler, modalVisible, modalVisibleHandler, currentVideo, currentVideoHandler, sortBy, sortByHandler, category, categoryHandler,watchLaterRender,setWatchLaterRender }}>
 
             {props.children}
         </UserDataContext.Provider>
