@@ -7,11 +7,11 @@ import axios from "axios";
 
 const VideoCard = (props) => {
   const [showOptions, setShowOptions] = useState("none");
-  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,watchLaterRender,setWatchLaterRender } =
+  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,watchLaterRender,setWatchLaterRender ,playlistRender,setPlaylistRender} =
 
     useUserData();
   const [watchLaterVideos, setWatchLaterVideos] = useState([]);
-
+  
   useEffect(() => {
     (async () => {
       const response = await axios.get("/api/user/watchLater", {
