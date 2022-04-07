@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../../Context/Auth-Context";
+import toast, { Toaster } from "react-hot-toast";
 
 const VideoCard = (props) => {
   const [showOptions, setShowOptions] = useState("none");
-  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,playlistRender,setPlaylistRender } =
+
+  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,historyRender,setHistoryRender,playlistRender,setPlaylistRender  } =
     useUserData();
   const [watchLaterVideos, setWatchLaterVideos] = useState([]);
 
@@ -59,6 +61,7 @@ const VideoCard = (props) => {
   const removeFromPlaylistHandler=async () => {
     const response = await axios.delete(
       `/api/user/playlists/${props.playlistId}/${props.video._id}`,
+
       {
         headers: {
           authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
@@ -66,6 +69,7 @@ const VideoCard = (props) => {
       }
     );
     setPlaylistRender(!playlistRender);
+
   }
   return (
     <div className="card__wrapper box-shadow flex flex-col m-8 bg--main-white relative">
@@ -117,8 +121,12 @@ const VideoCard = (props) => {
               watchLaterVideos.some((video) => video._id === props.video._id)
             ) {
               removeFromWatchLaterHandler();
+              toast.error("Removed from Watch Later!");
+              
             } else {
               watchLaterHandler();
+              toast.success("Added to Watch Later!");
+
             }
           }}
         >
@@ -157,6 +165,7 @@ const VideoCard = (props) => {
             delete
           </i>
           remove from Playlist
+
         </div>
       </div>
     </div>
