@@ -1,0 +1,17 @@
+.video__actions__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 2rem;
+    flex-wrap: wrap;
+}
+
+.action {
+    margin: 1rem 2rem 1rem 0rem;
+    font-size: 2rem;
+    color: var(--main-white);
+    border-radius: 24px;
+    background-color: var(--gray-800);
+    padding: 1rem;
+    cursor: pointer;
+}
