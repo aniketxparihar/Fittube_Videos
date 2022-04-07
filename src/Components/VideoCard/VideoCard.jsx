@@ -66,7 +66,7 @@ const VideoCard = (props) => {
           />
         </Link>
 
-        <div className="flex flex-row relative">
+        <div className="width-full flex flex-row relative">
           <div className="card__headings p-4">
             <div className="card__heading txt-2xl txt-bold txt-gray-200">
               {props.title}
