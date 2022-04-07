@@ -8,23 +8,23 @@ const Sidebar = () => {
     <div className="sidebar ">
       <Link className="sidebar__links" to="/videos" onCLick={sortByHandler("All")}>
         <i className="material-icons">home</i>
-        Videos
+        <div className="sidebar__text">Videos</div>
       </Link>
       <Link className="sidebar__links" to="playlist">
         <i className="material-icons">queue</i>
-        Playlist
+        <div className="sidebar__text"> Playlist</div>
       </Link>
       <Link className="sidebar__links" to="liked">
         <i className="material-icons">thumb_up</i>
-        Liked
+        <div className="sidebar__text"> Liked</div>
       </Link>
       <Link className="sidebar__links" to="watchlater">
         <i className="material-icons">watch_later</i>
-        Watch Later
+        <div className="sidebar__text"> Watch Later</div>
       </Link>
       <Link className="sidebar__links" to="history">
         <i className="material-icons">history</i>
-        History
+        <div className="sidebar__text"> History</div>
       </Link>
     </div>
   );

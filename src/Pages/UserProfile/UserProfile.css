@@ -1,0 +1,23 @@
+.profile__container{
+    height:90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+}
+.list__head{
+    font-size: 4rem;
+}
+.list__item{
+    font-size: 3rem;
+}
+.logout{
+    padding:3rem 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+} 

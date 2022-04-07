@@ -10,13 +10,13 @@ import Playlist from "./Pages/Playlist/Playlist";
 import History from "./Pages/History/History";
 import WatchLater from "./Pages/WatchLater/WatchLater";
 import Liked from "./Pages/Liked/Liked";
-import Settings from "./Pages/Settings/Settings";
 import Signup from "./Pages/Auth/Signup/Signup";
 import Login from "./Pages/Auth/Login/Login";
 import ForgotPassword from "./Pages/Auth/ForgotPassword/ForgotPassword";
 import SingleVideo from "./Pages/SingleVideo/SingleVideo";
 import PlaylistVideos from "./Pages/PlaylistVideos/PlaylistVideos";
 import Home from "./Pages/Home/Home";
+import UserProfile from "./Pages/UserProfile/UserProfile";
 const Routes = () => {
   return (
     <RoutesContainer>
@@ -30,7 +30,7 @@ const Routes = () => {
           <Route path="/liked" element={<Liked />} />
           <Route path="/history" element={<History />} />
           <Route path="/watchlater" element={<WatchLater />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Route>
         <Route element={<AuthRoute />}>
           <Route path="/login" element={<Login />} />

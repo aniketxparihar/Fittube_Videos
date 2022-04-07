@@ -31,6 +31,7 @@
 
 .card__image {
     height: 30rem;
+    width:100%;
 }
 
 .more {
@@ -83,5 +84,17 @@
 
 .more__option__icon {
     top: 1px;
+
+}
+
+@media screen and (max-width: 480px) {
+.card__wrapper {
+    max-height: max-content;
+    background-color: var(--black);
+    border-radius: 24px;
+    border: 1px solid var(--gray-800);
+    transition: all 0.4s;
+    transform: scale(0.9);
+}
 
 }

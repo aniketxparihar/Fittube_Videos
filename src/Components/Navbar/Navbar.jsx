@@ -22,8 +22,12 @@ const Navbar = () => {
           </i>
         </div>
         <div className="links">
-          <Link className="link pointer cart__page"to="/settings">
-            <i className=" material-icons settings relative ">settings</i>
+          <Link
+            to="/Profile"
+            className="link pointer cart__page"
+            id="cart__page"
+          >
+            <i className=" material-icons settings relative ">account_circle</i>
           </Link>
         </div>
       </nav>
