@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useUserData } from "../../Context/UserData-Context";
 import "./VideoCard.css";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../../Context/Auth-Context";
 import toast, { Toaster } from "react-hot-toast";
 
 const VideoCard = (props) => {
   const [showOptions, setShowOptions] = useState("none");
-  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,historyRender,setHistoryRender } =
+
+  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,historyRender,setHistoryRender,playlistRender,setPlaylistRender  } =
     useUserData();
   const [watchLaterVideos, setWatchLaterVideos] = useState([]);
 
@@ -57,17 +58,18 @@ const VideoCard = (props) => {
     );
     getWatchLaterVideos();
   };
-  const deleteHistoryHandler =async () => {
+  const removeFromPlaylistHandler=async () => {
     const response = await axios.delete(
-      `/api/user/history/${props.video._id}`,
+      `/api/user/playlists/${props.playlistId}/${props.video._id}`,
+
       {
         headers: {
           authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
         },
       }
     );
-    setHistoryRender(!historyRender);
-    toast.success("Video Deleted From History");
+    setPlaylistRender(!playlistRender);
+
   }
   return (
     <div className="card__wrapper box-shadow flex flex-col m-8 bg--main-white relative">
@@ -151,13 +153,19 @@ const VideoCard = (props) => {
         </div>
         <div
           className="more__option"
-          onClick={deleteHistoryHandler}
-          style={{display:props.history?"block":"none"}}
+          style={{display:props.playlist?"block":"none"}}
+          onClick={() => {
+            currentVideoHandler(props.video);
+            currentIdHandler(props._id);
+            removeFromPlaylistHandler(props._id);
+            toast.error("Video removed");
+          }}
         >
-          <i className="  material-icons pointer">
+          <i className="more__option__icon  material-icons pointer">
             delete
           </i>
-          Remove from history
+          remove from Playlist
+
         </div>
       </div>
     </div>

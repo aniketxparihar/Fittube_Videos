@@ -1,11 +1,12 @@
 import React from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
-
+import { useUserData } from "../../Context/UserData-Context";
 const Sidebar = () => {
+  const { sortByHandler } = useUserData();
   return (
     <div className="sidebar ">
-      <Link className="sidebar__links" to="/videos">
+      <Link className="sidebar__links" to="/videos" onCLick={sortByHandler("All")}>
         <i className="material-icons">home</i>
         Videos
       </Link>
