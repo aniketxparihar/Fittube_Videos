@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@100&display=swap');
+
 body {
   margin: 0;
-  font-family:"Spartan";
+  font-family: "Spartan";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(17, 16, 16);
@@ -12,8 +13,8 @@ code {
     monospace;
 }
 
-:root{
-  --primary:var(--violet-600);
+:root {
+  --primary: var(--violet-600);
 }
 
 .signup__button,
@@ -30,6 +31,7 @@ code {
   cursor: pointer;
   margin-top: 2rem;
 }
+
 .form__container {
   width: max-content;
   height: max-content;
@@ -41,12 +43,14 @@ code {
   border-radius: 24px;
   box-shadow: -0px 0px 20px 6px rgba(0, 0, 0, 0.4);
 }
+
 .heading {
   font-size: 3rem;
   padding: 1rem;
   font-weight: 900;
   color: var(--gray-300);
 }
+
 form {
   width: 50rem;
   height: max-content;
@@ -57,6 +61,7 @@ form {
   box-sizing: border-box;
   color: var(--gray-400);
 }
+
 .first_name,
 .last_name,
 .email,
@@ -75,10 +80,12 @@ form {
   align-items: center;
   margin-bottom: 2rem;
 }
+
 .termsAndCondition__container {
   display: flex;
   flex-direction: row;
 }
+
 .termsAndCondition {
   margin: 0;
   padding: 0;
@@ -88,6 +95,7 @@ form {
   width: 20px;
   height: 20px;
 }
+
 .email__input,
 .first_name__input,
 .last_name__input,
@@ -101,10 +109,12 @@ form {
   background: none;
   color: var(--gray-400);
 }
+
 label {
   font-size: 2rem;
   color: var(--gray-300);
 }
+
 .footer {
   width: 100%;
   display: flex;
@@ -112,10 +122,12 @@ label {
   align-items: center;
   margin-bottom: 2rem;
 }
+
 .rememberMe__container {
   display: flex;
   flex-direction: row;
 }
+
 .rememberMe {
   margin: 0;
   padding: 0;
@@ -126,12 +138,14 @@ label {
   height: 20px;
   cursor: pointer;
 }
+
 .forgotPassword {
   margin-left: auto;
   font-size: 2rem;
   color: var(--primary);
   cursor: pointer;
 }
+
 .login__container,
 .signup__container,
 .forgotpassword__container {
@@ -140,8 +154,9 @@ label {
   justify-content: center;
   align-items: center;
 }
+
 .send__password__button {
-  margin-top:2rem;
+  margin-top: 2rem;
   border-radius: 8px;
   border: none;
   padding: 1.5rem;
@@ -153,11 +168,24 @@ label {
   transition: 1s;
   cursor: pointer;
 }
-.noaccount{
+
+.noaccount {
   text-align: center;
   font-size: 2rem;
-  margin-top:2rem;
-  color:var(--gray-300);
+  margin-top: 2rem;
+  color: var(--gray-300);
+}
+
+.card__image {
+  width: 100%;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+.page__heading {
+  font-size: 2rem;
+  margin: 2rem 2rem 1rem 4rem;
+  color: var(--main-white)
 }
 
 .card__image{
@@ -171,4 +199,5 @@ label {
   flex-direction: row;
   justify-content: start;
   flex-wrap: wrap;
+
 }
