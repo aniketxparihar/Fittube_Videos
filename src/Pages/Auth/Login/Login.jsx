@@ -38,9 +38,9 @@ const Login = () => {
     }
   };
   const [state, dispatch] = useReducer(loginReducerFunc, {
-    email: "",
-    password: "",
-    rememberMe: false,
+    email: "test@gmail.com",
+    password: "test",
+    rememberMe: true,
   });
   return (
     <div className="login__container">
@@ -73,7 +73,7 @@ const Login = () => {
           </div>
           <div className="footer">
             <div className="rememberMe__container">
-              <input type="checkbox" id="rememberMe" className="rememberMe" />
+              <input type="checkbox" id="rememberMe" className="rememberMe" checked={state.rememberMe} />
               <label htmlFor="rememberMe">Remember Me</label>
             </div>
 

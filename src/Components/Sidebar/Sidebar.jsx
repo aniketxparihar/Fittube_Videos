@@ -3,10 +3,10 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { useUserData } from "../../Context/UserData-Context";
 const Sidebar = () => {
-  const { sortByHandler } = useUserData();
+  const { sortByHandler,categoryHandler } = useUserData();
   return (
     <div className="sidebar ">
-      <Link className="sidebar__links" to="/videos" onCLick={sortByHandler("All")}>
+      <Link className="sidebar__links" to="videos" onClick={() => {sortByHandler("All");categoryHandler("All")}}>
         <i className="material-icons">home</i>
         <div className="sidebar__text">Videos</div>
       </Link>

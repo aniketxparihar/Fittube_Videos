@@ -4,7 +4,6 @@ import VideoCard from "../../Components/VideoCard/VideoCard";
 import Categories from "../../Components/Category/Category";
 import "./VideoListing.css";
 import { useUserData } from "../../Context/UserData-Context";
-import Playlist_Modal from "../../Components/Playlist_Modal/Playlist_Modal";
 const VideoListing = () => {
   const [videoList, setVideoList] = useState([]);
   const { category, sortBy, sortByHandler } = useUserData();
