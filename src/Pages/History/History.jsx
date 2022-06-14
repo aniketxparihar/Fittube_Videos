@@ -1,43 +1,44 @@
 import React, { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+
 import VideoCard from "../../Components/VideoCard/VideoCard";
 import { useAuth } from "../../Context/Auth-Context";
-import axios from "axios";
-import "./History.css";
 import { useUserData } from "../../Context/UserData-Context";
+import "./History.css";
+
+import { getHistory,deleteAllFromHistory } from "../../services/historyService";
 
 const History = () => {
   const { authToken } = useAuth();
-  const [historyVideos, setHistoryVideos] = useState([]);
-  const { historyRender} = useUserData();
+  const { historyVideos, setHistoryVideos } = useUserData();
+
+  //Get All History Videos on Initial Render
   useEffect(() => {
     (async () => {
-      const response = await axios.get("/api/user/history", {
-        headers: {
-          authorization: authToken,
-        },
-      });
-      setHistoryVideos(response.data.history);
+      const res = await getHistory(authToken);
+      setHistoryVideos(res.data.history);
     })();
-  }, [historyRender]);
+  }, []);
   
-  const clearAllHistory = async () => {
-    const response = await axios.delete("/api/user/history/all", {
-      headers: {
-        authorization: authToken,
-      },
-    });
-    setHistoryVideos(response.data.history);
-  };
+  
   return (
     <div className="history__container">
       <div className="page__heading">
         History
-        <i className="material-icons pointer" onClick={clearAllHistory}>
-          delete
-        </i>
+        <div
+          className="clear-history"
+          onClick={async () => {
+            const res = await deleteAllFromHistory(authToken);
+            setHistoryVideos(res.data.history);
+            toast.success("History Cleared")
+          }}
+        >
+          Clear History
+        </div>
       </div>
       <div className="page__sub__heading txt-gray-400">
-        {historyVideos.length} videos
+        {historyVideos?.length} videos
       </div>
       <div className="video__card__wrapper">
         {historyVideos?.map((video) => {

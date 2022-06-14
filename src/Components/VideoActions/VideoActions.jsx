@@ -106,7 +106,7 @@ const VideoActions = (props) => {
       },
     });
     setLikedRender(!likedRender);
-    toast.error("Disliked!");
+    toast.success("Unliked!");
   };
 
   const copyToClipboard = (id) => {
@@ -129,7 +129,7 @@ const VideoActions = (props) => {
         onClick={() => {
           if (watchLaterVideos.some((video) => video._id === props.video._id)) {
             removeFromWatchLaterHandler();
-            toast.error("Removed from Watch Later!");
+            toast.success("Removed from Watch Later!");
           } else {
             watchLaterHandler();
             toast.success("Added to Watch Later!");

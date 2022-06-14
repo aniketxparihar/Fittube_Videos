@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import VideoCard from "../../Components/VideoCard/VideoCard";
-import { useUserData } from "../../Context/UserData-Context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+
+import VideoCard from "../../Components/VideoCard/VideoCard";
+import { useUserData } from "../../Context/UserData-Context";
+
 
 const PlaylistVideos = () => {
   const [playlistVideos, setPlaylistVideos] = useState([]);
   const [playlistData, setPlaylistData] = useState({});
   const {
     playlistRender,
-    setPlaylistRender,
   } = useUserData();
+
+
   const playlistUrl = `${window.location.pathname}`.slice(10);
   useEffect(() => {
     (async () => {

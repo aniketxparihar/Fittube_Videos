@@ -12,7 +12,7 @@ const UserProfile = () => {
   return (
     <div className="profile__container">
       <div className="profile">
-        <div className="list__wrapper flex flex-col bg-main-black">
+        <div className="flex flex-col bg-main-black">
           <div className="list__head  txt-main-white p-4">User</div>
           <div className="list__stacked">
             <div className="list__item  txt-main-white p-4 ">
@@ -21,9 +21,7 @@ const UserProfile = () => {
             <div className="list__item  txt-main-white p-4 ">
               Email : {foundUser.email}
             </div>
-            <div className="list__item txt-main-white p-4 ">
-              Created :{foundUser.createdAt}
-            </div>
+           
           </div>
         </div>
         <div className="logout" onClick={logout}>

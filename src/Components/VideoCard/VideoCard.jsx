@@ -4,71 +4,34 @@ import "./VideoCard.css";
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { deleteFromHistory } from "../../services/historyService";
+import { useAuth } from "../../Context/Auth-Context";
+import { addToWatchLater, deleteFromWatchLater, getWatchLater } from "../../services/watchLaterService";
+import { deleteFromPlaylist, getPlaylist } from "../../services/playlistService";
 
 const VideoCard = (props) => {
+  const { authToken } = useAuth();
   const [showOptions, setShowOptions] = useState("none");
-  const { currentIdHandler, modalVisibleHandler, currentVideoHandler,watchLaterRender,setWatchLaterRender ,playlistRender,setPlaylistRender} =
-
-    useUserData();
+  const {
+    currentIdHandler,
+    modalVisibleHandler,
+    currentVideoHandler,
+    watchLaterRender,
+    setWatchLaterRender,
+    playlistRender,
+    setPlaylistRender,
+  } = useUserData();
+  const { setHistoryVideos } = useUserData();
   const [watchLaterVideos, setWatchLaterVideos] = useState([]);
-  
+
   useEffect(() => {
     (async () => {
-      const response = await axios.get("/api/user/watchLater", {
-        headers: {
-          authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
-        },
-      });
-      setWatchLaterVideos(response.data.watchLater);
+      const res = await getWatchLater(authToken);
+      setWatchLaterVideos(res.data.watchLater);
     })();
-  }, []);
+  }, [watchLaterRender]);
 
-  const getWatchLaterVideos = async () => {
-    const response = await axios.get("/api/user/watchLater", {
-      headers: {
-        authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
-      },
-    });
-    setWatchLaterVideos(response.data.watchLater);
-  };
-  const watchLaterHandler = async () => {
-    const response = await axios.post(
-      "/api/user/watchLater",
-      {
-        video: props.video,
-      },
-      {
-        headers: {
-          authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
-        },
-      }
-    );
-    getWatchLaterVideos();
-  };
-  const removeFromWatchLaterHandler = async () => {
-    const response = await axios.delete(
-      `/api/user/watchLater/${props.video._id}`,
-      {
-        headers: {
-          authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
-        },
-      }
-    );
-    getWatchLaterVideos();
-  };
-  const removeFromPlaylistHandler=async () => {
-    const response = await axios.delete(
-      `/api/user/playlists/${props.playlistId}/${props.video._id}`,
 
-      {
-        headers: {
-          authorization: JSON.parse(localStorage.getItem("user")).encodedToken,
-        },
-      }
-    );
-    setPlaylistRender(!playlistRender);
-
-  }
   return (
     <div className="card__wrapper box-shadow flex flex-col m-8 bg--main-white relative">
       <div className="card__header flex flex-col ">
@@ -102,6 +65,7 @@ const VideoCard = (props) => {
           </i>
         </div>
       </div>
+
       <div
         className="more__options"
         onMouseLeave={() => {
@@ -114,17 +78,17 @@ const VideoCard = (props) => {
       >
         <div
           className="more__option"
-          onClick={() => {
+          onClick={async () => {
             if (
-              watchLaterVideos.some((video) => video._id === props.video._id)
+              watchLaterVideos?.some((video) => video._id === props.video._id)
             ) {
-              removeFromWatchLaterHandler();
-              toast.error("Removed from Watch Later!");
-              
+              const res=await deleteFromWatchLater(authToken,props.video);
+              setWatchLaterVideos(res.data.watchLater);
+              toast.success("Removed from Watch Later!");
             } else {
-              watchLaterHandler();
+              const res=await addToWatchLater(authToken, props.video);
+              setWatchLaterVideos(res.data.watchLater);
               toast.success("Added to Watch Later!");
-
             }
             setWatchLaterRender(!watchLaterRender);
           }}
@@ -132,7 +96,7 @@ const VideoCard = (props) => {
           <i className="more__option__icon material-icons pointer">
             watch_later
           </i>
-          {watchLaterVideos.some((video) => video._id === props.video._id) ===
+          {watchLaterVideos?.some((video) => video._id === props.video._id) ===
           true
             ? "Remove From Watch Later"
             : "Add to Watch Later"}
@@ -150,22 +114,36 @@ const VideoCard = (props) => {
           </i>
           Add to Playlist
         </div>
+
         <div
           className="more__option"
-          style={{display:props.playlist?"block":"none"}}
-          onClick={() => {
+          style={{ display: props.playlist ? "block" : "none" }}
+          onClick={async () => {
             currentVideoHandler(props.video);
             currentIdHandler(props._id);
-            removeFromPlaylistHandler(props._id);
+            deleteFromPlaylist(authToken,{_id:props.playlistId}, props.video);
+            setPlaylistRender(!playlistRender)
             toast.error("Video removed");
           }}
         >
-          <i className="more__option__icon  material-icons pointer">
-            delete
-          </i>
+          <i className="more__option__icon  material-icons pointer">delete</i>
           remove from Playlist
-
         </div>
+
+        {/* render delete from history button in case the card is being rendered inside the history page */}
+        {props.history ? (
+          <div
+            className="more__option"
+            onClick={async () => {
+              const res = await deleteFromHistory(authToken, props.video);
+              await setHistoryVideos(res.data.history);
+              toast.success("Video removed from History");
+            }}
+          >
+            <i className="more__option__icon material-icons pointer">delete</i>
+            Remove from history
+          </div>
+        ) : null}
       </div>
     </div>
   );

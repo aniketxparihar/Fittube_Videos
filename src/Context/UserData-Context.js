@@ -6,11 +6,13 @@ const UserDataContext = createContext();
 const UserDataProvider = (props) => {
     const [currentId, setCurrentId] = useState("");
     const [modalVisible, setModalVisible] = useState("none");
+    const [historyVideos, setHistoryVideos] = useState([]);
     const [currentVideo, setCurrentVideo] = useState({});
     const [sortBy, setSortBy] = useState("All");
     const [category, setCategory] = useState("");
     const [watchLaterRender, setWatchLaterRender] = useState(true);
-
+    const [playlistRender, setPlaylistRender] = useState(true);
+    const [searchString, setSearchString] = useState("")
 
     const categoryHandler = (value) => {
         setCategory(value);
@@ -30,7 +32,9 @@ const UserDataProvider = (props) => {
 
 
     return (
-        <UserDataContext.Provider value={{ currentId, currentIdHandler, modalVisible, modalVisibleHandler, currentVideo, currentVideoHandler, sortBy, sortByHandler, category, categoryHandler,watchLaterRender,setWatchLaterRender }}>
+        <UserDataContext.Provider value={{
+            historyVideos, setHistoryVideos, currentId, currentIdHandler, modalVisible, modalVisibleHandler, currentVideo, currentVideoHandler, sortBy, sortByHandler, category, categoryHandler, watchLaterRender, setWatchLaterRender, playlistRender,
+            setPlaylistRender, searchString, setSearchString }}>
             {props.children}
         </UserDataContext.Provider>
     )

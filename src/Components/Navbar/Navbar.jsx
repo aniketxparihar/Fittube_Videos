@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Navbar.css"
 import {Link} from "react-router-dom"
+import { useUserData } from '../../Context/UserData-Context';
 
 const Navbar = () => {
-
-
+  const { searchString, setSearchString } = useUserData();
   return (
     <div>
       <nav>
@@ -16,6 +16,7 @@ const Navbar = () => {
             type="text"
             className="search__input"
             placeholder="  Search Here "
+            onChange={(e)=>setSearchString(e.target.value)}
           />
           <i className="search__icon badge__icon material-icons relative p-4  rounded-s txt-gray-400 pointer">
             search
