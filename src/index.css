@@ -7,7 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(17, 16, 16);
 }
-
+html{
+  font-size: 9px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -200,4 +202,9 @@ label {
   justify-content: start;
   flex-wrap: wrap;
 
+}
+@media screen and (max-width: 800px) {
+  html{
+    font-size: 7px;
+  }
 }

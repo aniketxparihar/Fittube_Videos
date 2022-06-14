@@ -6,7 +6,8 @@ import "./VideoListing.css";
 import { useUserData } from "../../Context/UserData-Context";
 const VideoListing = () => {
   const [videoList, setVideoList] = useState([]);
-  const { category, sortBy, sortByHandler } = useUserData();
+  const { category, sortBy, sortByHandler, searchString, setSearchString } = useUserData();
+  const [sortedVideos, setSortedVideos] = useState(videoList);
   useEffect(
     () =>{
       (async () => {
@@ -16,18 +17,25 @@ const VideoListing = () => {
       })()},
     []
   );
-  const [sortedVideos, setSortedVideos] = useState(videoList);
   useEffect(
     () =>
-      setSortedVideos(videoList.filter((video) => video.category === sortBy)),
-    [sortBy]
+      setSortedVideos(
+        videoList.filter(
+          (video) =>
+            video.category === sortBy &&
+            video.title.toLowerCase().includes(searchString.toLowerCase())
+             &&
+            video.creator.toLowerCase().includes(searchString.toLowerCase())
+      )),
+    [sortBy, searchString]
   );
+
   return (
     <div className="video__listing__container">
       <Categories />
-
+      
       <div className="videos__list__container">
-        {sortBy !== "All" && sortBy !== ""
+        {sortBy !== "All" && sortBy !== "" || searchString!==""
           ? sortedVideos.map((video) => {
               return (
                 <div key={video.id} className="video__card">

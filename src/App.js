@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Toaster
-        position="top-center"
+        position="bottom-right"
         reverseOrder={false}
         toastOptions={{
           className: '',
@@ -24,7 +24,6 @@ function App() {
         }}
       />
       <Navbar />
-      <Toaster style={{fontSize:"1.5rem"}}/>
       <main className="main__container">
         <Sidebar />
         <div className="main__pages">

@@ -24,17 +24,17 @@ const WatchLater = () => {
     <div className="watchlater__container">
       <div className="page__heading txt-main-white">Watch Later</div>
       <div className="page__sub__heading txt-gray-400">
-        {videoList.length} Videos
+        {videoList?.length} Videos
       </div>
       <div className="video__card__wrapper">
-        {videoList.map((video) => {
+        {videoList?.map((video) => {
           return (
-            <div key={video.id} className="video__card">
+            <div key={video?.id} className="?__card">
               <VideoCard
                 video={video}
-                title={video.title}
-                creator={video.creator}
-                _id={video._id}
+                title={video?.title}
+                creator={video?.creator}
+                _id={video?._id}
               />
             </div>
           );
