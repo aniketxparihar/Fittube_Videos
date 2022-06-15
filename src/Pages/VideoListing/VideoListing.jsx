@@ -6,7 +6,7 @@ import "./VideoListing.css";
 import { useUserData } from "../../Context/UserData-Context";
 const VideoListing = () => {
   const [videoList, setVideoList] = useState([]);
-  const { category, sortBy, sortByHandler, searchString, setSearchString } = useUserData();
+  const { category, sortBy,setSortBy, sortByHandler, searchString, setSearchString } = useUserData();
   const [sortedVideos, setSortedVideos] = useState(videoList);
   useEffect(
     () =>{
@@ -18,18 +18,29 @@ const VideoListing = () => {
     []
   );
   useEffect(
-    () =>
+    () =>{
       setSortedVideos(
-        videoList.filter(
-          (video) =>
-            video.category === sortBy &&
-            video.title.toLowerCase().includes(searchString.toLowerCase())
-             &&
-            video.creator.toLowerCase().includes(searchString.toLowerCase())
-      )),
-    [sortBy, searchString]
+        videoList
+          .filter((video) => video.category === sortBy)
+      );
+      setSearchString("");
+    },
+    [sortBy]
   );
-
+  useEffect(
+    () =>{
+      setSortedVideos(
+        videoList
+          .filter(
+            (video) =>
+              video.title.toLowerCase().includes(searchString.toLowerCase()) ||
+              video.creator.toLowerCase().includes(searchString.toLowerCase())
+          )
+      )
+      sortByHandler("All")
+    },
+    [ searchString]
+  );
   return (
     <div className="video__listing__container">
       <Categories />

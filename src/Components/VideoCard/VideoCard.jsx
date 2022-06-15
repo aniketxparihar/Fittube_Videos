@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useUserData } from "../../Context/UserData-Context";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 import "./VideoCard.css";
-import { Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
 import { deleteFromHistory } from "../../services/historyService";
 import { useAuth } from "../../Context/Auth-Context";
 import { addToWatchLater, deleteFromWatchLater, getWatchLater } from "../../services/watchLaterService";
-import { deleteFromPlaylist, getPlaylist } from "../../services/playlistService";
+import { deleteFromPlaylist } from "../../services/playlistService";
+import { useUserData } from "../../Context/UserData-Context";
+
 
 const VideoCard = (props) => {
+  const navigate = useNavigate();
   const { authToken } = useAuth();
   const [showOptions, setShowOptions] = useState("none");
   const {
@@ -79,6 +81,7 @@ const VideoCard = (props) => {
         <div
           className="more__option"
           onClick={async () => {
+            if(authToken){
             if (
               watchLaterVideos?.some((video) => video._id === props.video._id)
             ) {
@@ -90,7 +93,12 @@ const VideoCard = (props) => {
               setWatchLaterVideos(res.data.watchLater);
               toast.success("Added to Watch Later!");
             }
-            setWatchLaterRender(!watchLaterRender);
+              setWatchLaterRender(!watchLaterRender);
+            }
+            else {
+              toast.success("Please Login First")
+              setTimeout(navigate("/Login"),2000)
+            }
           }}
         >
           <i className="more__option__icon material-icons pointer">
@@ -104,9 +112,13 @@ const VideoCard = (props) => {
         <div
           className="more__option"
           onClick={() => {
-            currentVideoHandler(props.video);
+            if(authToken){ currentVideoHandler(props.video);
             modalVisibleHandler("flex");
-            currentIdHandler(props._id);
+            currentIdHandler(props._id);}
+            else {
+              toast.success("Please Login First")
+              setTimeout(navigate("/Login"),2000)
+            }
           }}
         >
           <i className="more__option__icon  material-icons pointer">

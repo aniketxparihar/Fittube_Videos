@@ -5,7 +5,7 @@ body {
   font-family: "Spartan";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(17, 16, 16);
+  background-color: #0f172a;
 }
 html{
   font-size: 9px;
@@ -16,7 +16,7 @@ code {
 }
 
 :root {
-  --primary: var(--violet-600);
+  --primary: #22d3ee;
 }
 
 .signup__button,
@@ -85,17 +85,19 @@ form {
 
 .termsAndCondition__container {
   display: flex;
-  flex-direction: row;
+align-items: center; 
+justify-content:center; 
+flex-direction: row;
 }
 
 .termsAndCondition {
   margin: 0;
   padding: 0;
-  position: relative;
   margin-right: 8px;
-  top: -2px;
   width: 20px;
   height: 20px;
+  top:3px;
+  position: relative;
 }
 
 .email__input,

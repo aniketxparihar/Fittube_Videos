@@ -21,7 +21,6 @@ const History = () => {
     })();
   }, []);
   
-  
   return (
     <div className="history__container">
       <div className="page__heading">

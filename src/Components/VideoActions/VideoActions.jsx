@@ -137,7 +137,7 @@ const VideoActions = (props) => {
         }}
       >
         <i className="material-icons">watch_later</i>
-        {watchLaterVideos.some((video) => video._id === props.video._id) ===
+        {watchLaterVideos?.some((video) => video._id === props.video._id) ===
         true
           ? "Remove From Watch Later"
           : "Add to Watch Later"}
