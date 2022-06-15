@@ -16,7 +16,8 @@ const Navbar = () => {
             type="text"
             className="search__input"
             placeholder="  Search Here "
-            onChange={(e)=>setSearchString(e.target.value)}
+            onChange={(e) => setSearchString(e.target.value)}
+            value={searchString}
           />
           <i className="search__icon badge__icon material-icons relative p-4  rounded-s txt-gray-400 pointer">
             search

@@ -1,12 +1,12 @@
 .page__heading {
     font-size: 2rem;
-    margin: 2rem 2rem 1rem 4rem;
+    margin: 2rem 2rem 1rem 2rem;
     color: var(--main-white)
 }
 
 .page__sub__heading {
     font-size: 1.5rem;
-    margin: 1rem 2rem 2rem 4rem;
+    margin: 1rem 2rem 2rem 2rem;
 }
 
 .playlist__card__wrapper {
@@ -21,4 +21,12 @@
     height: 100%;
     padding: 4rem;
     overflow: auto;
+}
+@media screen and (max-width: 480px) {
+.playlist__container {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    overflow: auto;
+}
 }

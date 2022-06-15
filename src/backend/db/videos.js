@@ -76,5 +76,105 @@ export const videos = [
     description:
       "Here are 5 simple and effective tips from Sadhguru to enhance our mental health.",
 
+  },
+  {
+    _id: "h91btaHcLWU",
+    title: "Traditional Iron Hand Training",
+    creator: "Karate TV",
+    category: "Martial Arts",
+    description:
+      "",
+
+  },
+  {
+    _id: "0iQzVKwHV8E",
+    title: "10 BEST FOREARM EXCERCISES",
+    creator: "Karate TV",
+    category: "Martial Arts",
+    description:
+      "",
+
+  },
+  {
+    _id: "FwoPpCZhCjg",
+    title: "STRONG NECK WORKOUT .",
+    creator: "Karate TV",
+    category: "Martial Arts",
+    description:
+      "",
+
+  }
+  ,
+  {
+    _id: "cslIbZERhSc",
+    title: "25 Tricking KICKS | A Progressive Session",
+    creator: "Mastering Tricking",
+    category: "Martial Arts",
+    description:
+      "",
+
+  },
+  {
+    _id: "oWjSdwzOA6k",
+    title: "8 principles to achieve optimum mental health | Dan Banos | TEDxRockhampton",
+    creator: "TEDx Talks",
+    category: "Mental Health",
+    description:
+      "",
+
+  },
+  {
+    _id: "rkZl2gsLUp4",
+    title: "How to manage your mental health | Leon Taylor | TEDxClapham",
+    creator: "TEDx Talks",
+    category: "Mental Health",
+    description:
+      "",
+
+  },
+  {
+    _id: "lo0X2ZdElQ4",
+    title: "Consciousness -- the final frontier | Dada Gunamuktananda | TEDxNoosa 2014",
+    creator: "TEDx Talks",
+    category: "Mental Health",
+    description:
+      "",
+
+  },
+  {
+    _id: "4O2JK_94g3Y",
+    title: "Unwavering Focus | Dandapani | TEDxReno",
+    creator: "TEDx Talks",
+    category: "Mental Health",
+    description:
+      "",
+
+  },
+  {
+    _id: "1XCObQjSHIs",
+    title: "One Thing You Must Do to Overcome Anxiety | Sadhguru",
+    creator: "Sadhguru",
+    category: "Mental Health",
+    description:
+      "",
+
+  },
+  {
+    _id: "xQeX2YZTjLY",
+    title: "SADHGURU - SWITCH To This DIET! It Can Do HEALTH WONDERS in Your Body - The Indian Mystics",
+    creator: "Sadhguru",
+    category: "Diet",
+    description:
+      "",
+
+  },
+  {
+    _id: "0mYwsA8Ajks",
+    title: "Top yogic super foods explained by Sadhguru -(For high energy,stability, health and detoxification )",
+    creator: "Sadhguru",
+    category: "Diet",
+    description:
+      "",
+
   }
 ];

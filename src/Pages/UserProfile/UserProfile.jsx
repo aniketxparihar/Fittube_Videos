@@ -8,7 +8,6 @@ const UserProfile = () => {
     localStorage.removeItem("user");
     userHandler(null);
   };
-  useEffect(() => {}, [foundUser]);
   return (
     <div className="profile__container">
       <div className="profile">

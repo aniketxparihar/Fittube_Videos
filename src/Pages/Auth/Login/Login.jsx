@@ -4,7 +4,7 @@ import { useAuth } from "../../../Context/Auth-Context";
 import axios from "axios";
 
 const Login = () => {
-  const { foundUser, authToken, userHandler, tokenHandler } = useAuth();
+  const {  userHandler, tokenHandler } = useAuth();
   
 
   const loginHandler = async (e) => {
@@ -16,8 +16,9 @@ const Login = () => {
       });
       if (response.data.foundUser) {
         if(rememberMe)
-        localStorage.setItem("user", JSON.stringify(response.data));
+          localStorage.setItem("user", JSON.stringify(response.data));
         userHandler(response.data.foundUser)
+        tokenHandler(response.data.encodedToken)
       }
     } catch (error) {
       console.log(error);
@@ -83,7 +84,7 @@ const Login = () => {
           />
           <div className="noaccount">
             Don't have an account?
-            <Link to="/signup" className="txt-4xl txt-yellow-400">
+            <Link to="/signup" className="txt-4xl txt-light-blue-400">
               Signup
             </Link>
           </div>

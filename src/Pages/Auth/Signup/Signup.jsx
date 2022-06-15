@@ -2,7 +2,9 @@ import React,{useReducer} from "react";
 import axios from "axios";
 import { useAuth } from "../../../Context/Auth-Context";
 const Signup = () => {
-  const { createdUserHandler,tokenHandler } = useAuth();
+  const { createdUserHandler, tokenHandler } = useAuth();
+  
+  
   const signupReducerFunc = (state, action) => {
     switch (action.type) {
       case "FIRST_NAME":

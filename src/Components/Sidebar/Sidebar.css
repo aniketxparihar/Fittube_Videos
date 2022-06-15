@@ -14,13 +14,15 @@
     width:100%;
     padding:2rem;
     font-size: 2rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 .sidebar__links:hover{
     background-color: var(--gray-800);
 }
 .material-icons{
  position:relative;
- top:3px;
  margin-right:4px;
  color:var(--primary)
 }
@@ -39,7 +41,6 @@
 }
 .sidebar__links{
    display: flex;
-   flex-direction: column;
    padding:1rem;
 }
 .sidebar__text{
